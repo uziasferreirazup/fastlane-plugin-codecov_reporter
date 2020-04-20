@@ -3,7 +3,7 @@ module Fastlane
     class CodecovReporterAction < Action
       def self.run(params)
         UI.message "I am Getting the latest bash script from Codecov.io"
-        sh "curl -s -N https://Codecov.io/bash > #{ENV['PWD']}/codecov_reporter.sh #{params[:flags]}"
+        sh "curl -s -N https://Codecov.io/bash > #{ENV['PWD']}/codecov_reporter.sh"
 
         params[:token] ||= false
 
