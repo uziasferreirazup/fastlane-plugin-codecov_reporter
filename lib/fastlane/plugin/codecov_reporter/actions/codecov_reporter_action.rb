@@ -3,16 +3,16 @@ module Fastlane
     class CodecovReporterAction < Action
       def self.run(params)
         UI.message "I am Getting the latest bash script from Codecov.io"
-        sh "curl -s -N https://Codecov.io/bash > #{ENV['PWD']}/codecov_reporter.sh -Z #{params[:flags]}"
+        sh "curl -s -N https://Codecov.io/bash > #{ENV['PWD']}/codecov_reporter.sh #{params[:flags]}"
 
         params[:token] ||= false
 
         if params[:token] != false
           UI.message "It looks like I'm working with a private repository"
-          sh "bash #{ENV['PWD']}/codecov_reporter.sh -K -t #{params[:token]} -Z #{params[:flags]}"
+          sh "bash #{ENV['PWD']}/codecov_reporter.sh -K -t #{params[:token]} #{params[:flags]}"
         else
           UI.message "It looks like I'm working with a public repository"
-          sh "bash #{ENV['PWD']}/codecov_reporter.sh -K -Z #{params[:flags]}"
+          sh "bash #{ENV['PWD']}/codecov_reporter.sh -K #{params[:flags]}"
         end
 
         UI.message "Removing the bash script I got from Codecov.io"
